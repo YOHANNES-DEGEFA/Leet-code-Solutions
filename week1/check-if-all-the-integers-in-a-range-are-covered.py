@@ -1,13 +1,16 @@
 class Solution:
     def isCovered(self, ranges: List[List[int]], left: int, right: int) -> bool:
-        rangeSet = set(x for x in range(left,right+1))
-        for s, e in ranges:
-            for i in range(s,e+1):
-                if not rangeSet:
+
+        numSet = {x for x in range(left,right+1)}
+
+        for r in ranges: 
+            start, end = r
+            for num in range(start, end+1):
+                if num in numSet: 
+                    numSet.remove(num)
+
+                if not numSet: 
                     return True
-                if i in rangeSet:
-                    rangeSet.remove(i)
-        if not rangeSet:
-            return True
+
         return False
         
