@@ -1,10 +1,7 @@
 class Solution:
     def isValidSudoku(self, board: List[List[str]]) -> bool:
-        # colsMap = {d:[] for d in range(9)}
-        # rowsMap  = {d:[] for d in range(9)}
-        # sub_gridsMap = {d:[] for d in range(9)}
 
-        #collect elements in each row
+        #Check the validity of each rows
         for i in range(9):
             cur_row = set()
             for j in range(9):
@@ -13,7 +10,7 @@ class Solution:
                         return False
                     cur_row.add(board[i][j])
 
-        #collect elements in each column
+        #Check the validity of each cols
         for j in range(9):
             cur_col = set()
             for i in range(9):
@@ -22,14 +19,7 @@ class Solution:
                         return False
                     cur_col.add(board[i][j])
 
-        # if any(len(s) != len(set(s)) for s in colsMap.values()):
-        #     return False
-
-        
-        # if any(len(s) != len(set(s)) for s in rowsMap.values()):
-        #     return False
-
-        
+        #Check the validity of each 3X3 sub-boards
         for k in range(9):
             for i, j in [(1,1),(1,4),(1,7), (4,1),(4,4), (4,7),(7,1),(7,4),(7,7)]:
                 temp = set()
@@ -39,6 +29,8 @@ class Solution:
                             if  board[c][d] in temp: 
                                 return False
                             temp.add( board[c][d])
+
+        # Now that the given board has successuly passed the three checks,  we return True 
         return True 
 
 
