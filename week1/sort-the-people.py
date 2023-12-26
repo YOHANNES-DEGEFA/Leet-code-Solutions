@@ -4,13 +4,10 @@ class Solution:
       n  = len(names)
 
       for i in range(n):
-          max_index = i
-          for j in range(i+1, n):
-              if heights[j] > heights[max_index]:
-                  max_index = j 
-
-          names[i], names[max_index] = names[max_index], names[i]
-          heights[i], heights[max_index] = heights[max_index], heights[i]
+          for j in range(n-1):
+              if heights[j+1] > heights[j]:
+                names[j], names[j+1] = names[j+1], names[j]
+                heights[j], heights[j+1] = heights[j+1], heights[j]
 
       return names
 
