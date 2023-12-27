@@ -1,18 +1,17 @@
 class Solution:
     def relativeSortArray(self, arr1: List[int], arr2: List[int]) -> List[int]:
-        ans = []
-        temp = []
-        for n in arr2: 
-            for n2 in arr1: 
-                if n2 == n: 
-                    ans.append(n)
+
+        idx_dict = {}
+        for i in range(len(arr2)):
+            idx_dict[arr2[i]]  = i 
 
         arr2 = set(arr2)
-        
-        for n in arr1: 
-            if n not in arr2:
-                temp.append(n)
-        temp.sort()
-        ans += temp
-        return ans 
-        
+        N = len(arr1)
+        def comp_by_idx(num):
+            if num not in arr2: 
+                return N + num 
+
+            return idx_dict[num]
+
+        arr1.sort(key=comp_by_idx)
+        return arr1
