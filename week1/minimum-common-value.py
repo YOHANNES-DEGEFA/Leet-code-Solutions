@@ -1,9 +1,19 @@
 class Solution:
     def getCommon(self, nums1: List[int], nums2: List[int]) -> int:
-        set2 = set(nums2)
-        for n in nums1: 
-            if n in set2: 
-                return n 
+        
+        N, N2 = len(nums1), len(nums2)
+        i = i2 = 0 
+        while i < N and i2 < N2: 
+            if nums1[i] > nums2[i2]: 
+                i2 += 1 
 
-        return -1 
+            elif nums1[i] < nums2[i2]:
+                i += 1 
+
+            else: # if they both are equal we have found our answer, so return it
+                return nums1[i] 
+
+        return -1
+
+
         
