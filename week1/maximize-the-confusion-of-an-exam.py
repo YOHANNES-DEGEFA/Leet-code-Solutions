@@ -1,17 +1,20 @@
 class Solution:
     def maxConsecutiveAnswers(self, answerKey: str, k: int) -> int:
-        freq = {"T":0,"F":0}
+        freq = [0,0]
         
-        l = 0 
+        l = cur_max =  0 
         answer = 1
         for r in range(len(answerKey)):
-            freq[answerKey[r]] += 1 
-            cur_freq = freq["T"] if freq["T"] > freq["F"] else freq["F"] 
+            cur_idx = 1 if answerKey[r] == "T" else 0 
+            freq[cur_idx] += 1 
             
-            while (r-l+1) - cur_freq > k: 
-                freq[answerKey[l]] -= 1 
+            if freq[cur_idx] > cur_max: 
+                cur_max = freq[cur_idx] 
+            
+            while (r-l+1) - cur_max > k:
+                cur_idx = 1 if answerKey[l] == "T" else 0 
+                freq[cur_idx] -= 1 
                 l += 1 
             if r-l+1 > answer: 
                 answer = r-l+1 
-        
         return answer
