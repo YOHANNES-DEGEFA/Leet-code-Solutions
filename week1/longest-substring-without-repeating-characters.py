@@ -11,7 +11,8 @@ class Solution:
                 l += 1 
    
             seen.add(s[r])
-            ans = max(ans, r-l+1)
+            if ans < r-l+1: 
+                ans = r-l+1
 
         return ans 
         
