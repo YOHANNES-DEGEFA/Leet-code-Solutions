@@ -24,17 +24,7 @@ class Solution:
         if sign == 1: 
             return int(''.join(digits))
         else: 
-
-            def custom_comparator(d1, d2): 
-                return d1 + d2 > d2 + d1
-
-
-            for i in range(len(digits)): 
-                for j in range(len(digits)-i-1): 
-
-                    if not custom_comparator(digits[j], digits[j+1]): 
-
-                        digits[j], digits[j+1] = digits[j+1], digits[j]
+            digits.sort(reverse=True)
 
         
         return -1*int(''.join(digits))
